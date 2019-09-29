@@ -137,10 +137,11 @@ public extension Data {
 		else if let value_bool = obj as? Bool {
 			try self.pack(boolean: value_bool)
 		}
-        // DATA (as [UInt8])
-        else if let value_data = obj as? [UInt8] {
-            try self.pack(bytes: value_data)
-        }
+		// DATA (as [UInt8])
+		else if type(of: obj) == [UInt8].self {
+				let value_data = obj as! [UInt8]
+				try self.pack(bytes: value_data)
+		}
 		// ARRAY
 		else if let value_array = obj as? [Any?] {
 			try self.pack(array: value_array)
